@@ -20,10 +20,6 @@ export const signupUser=async (req,res)=>{
                 const token=generateToken(user);
                 console.log(token)
                  res.cookie('token', token, {
-                    httpOnly:true,
-                    secure:true,
-                     sameSite:"None",
-                    path:'/',
                      maxAge:3600000*24*30,
                  });
                 return res.status(200).json({message:"signup succesfull",user})
@@ -53,9 +49,6 @@ export const  loginUser=async (req,res)=>{
        if(result){
         const token=generateToken(user);
         res.cookie('token', token, {
-                    httpOnly:true,
-                    secure:true,
-                    path:'/',
                      maxAge:3600000*24*30,
                  });
         res.status(201).json({message:"login successfull",user})
