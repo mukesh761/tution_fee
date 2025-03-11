@@ -18,11 +18,12 @@ const Signup = () => {
         e.preventDefault();
         try {
             const userdata={name,email,password}
-            const response= await axios.post(`${backend.apiUrl}/user/signup`,userdata,{withCredentials:true});
+            const response= await axios.post(`${backend.apiUrl}/user/signup`,userdata,);
             
             setloading(false)
             localStorage.setItem("islogin",true);
             localStorage.setItem("user",JSON.stringify(response.data.user));
+            localStorage.setItem('token', response.data.token);
             toast.success(response.data.message);
             navigate("/");
           
