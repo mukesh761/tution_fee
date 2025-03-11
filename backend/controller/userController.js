@@ -19,17 +19,8 @@ export const signupUser=async (req,res)=>{
                 })
                 const token=generateToken(user);
                 console.log(token)
-      const expiryDate = new Date();
-expiryDate.setMilliseconds(expiryDate.getMilliseconds() + 3600000 * 24 * 30); // 30 days from now
 
-res.cookie('token', token, {
-  httpOnly: true,
-  secure: true,
-  expires: expiryDate,  // Use `expires` instead of `maxAge`
-  sameSite: 'Strict',
-    path:"/"
-});
-                return res.status(200).json({message:"signup succesfull",user})
+                return res.status(200).json({message:"signup succesfull",user,token})
             })
           })
         }
@@ -55,17 +46,8 @@ export const  loginUser=async (req,res)=>{
        const result=await  bcrypt.compare(password,user.password);
        if(result){
         const token=generateToken(user);
-     const expiryDate = new Date();
-expiryDate.setMilliseconds(expiryDate.getMilliseconds() + 3600000 * 24 * 30); // 30 days from now
-
-res.cookie('token', token, {
-  httpOnly: true,
-  secure:true,
-  expires: expiryDate,  // Use `expires` instead of `maxAge`
-  sameSite: 'Strict',
-    path:"/"
-});
-        res.status(201).json({message:"login successfull",user})
+ 
+        res.status(201).json({message:"login successfull",user,token})
        }
        else{
         res.status(403).json({message:"password or email is incorrect"})
@@ -81,6 +63,6 @@ res.cookie('token', token, {
 }
 
 export const logout=(req,res)=>{
-    res.cookie("token","");
-    res.status(204).json({message:"user logout"})
+    const token=" "
+    res.status(204).json({message:"user logout",token})
 }
