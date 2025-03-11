@@ -6,6 +6,7 @@ import { backend } from '../config';
 import { toast } from 'react-toastify';
 
 const Addstudent =({value}) => {
+    const token = localStorage.getItem('token');
     const [name, setname] = useState("");
     const [fname, setfname] = useState("");
     const [classs, setclasss] = useState("");
@@ -19,7 +20,11 @@ const Addstudent =({value}) => {
         try {
           setloading(true)
           const formdata={name,fname,classs,join,fees}
-          const response=await axios.post(`${backend.apiUrl}/student/addstudent/${id}`,formdata,{withCredentials:true});
+          const response=await axios.post(`${backend.apiUrl}/student/addstudent/${id}`,formdata, {
+            headers: {
+              Authorization: `Bearer ${token}`, // Send token in the "Authorization" header
+            },
+          });
           
           toast.success("student added")
           setloading(false)
