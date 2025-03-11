@@ -5,6 +5,7 @@ import { backend } from '../config';
 import { toast } from 'react-toastify';
 
 const Deposite = ({value}) => {
+    const token = localStorage.getItem('token');
     const [depositeon, setdepositeon] = useState();
     const [lastdeposite, setlastdeposite] = useState();
     const [depositeupto, setdepositeupto] = useState();
@@ -13,7 +14,11 @@ const Deposite = ({value}) => {
         e.preventDefault();
         try {
             const formdata={depositeon,lastdeposite,depositeupto}
-            const response=await axios.post(`${backend.apiUrl}/student/depositefee/${id}`,formdata,{withCredentials:true});
+            const response=await axios.post(`${backend.apiUrl}/student/depositefee/${id}`,formdata, {
+            headers: {
+              Authorization: `Bearer ${token}`, // Send token in the "Authorization" header
+            },
+          });
            
             toast.success("fee updated");
             value.setshowdeposite(false)
