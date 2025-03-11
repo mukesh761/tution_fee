@@ -36,8 +36,7 @@ const Home = () => {
     const response = await axios.get(`${backend.apiUrl}/batch/findbatch`, {
             headers: {
               Authorization: `Bearer ${token}`, // Send token in the "Authorization" header
-            },
-          });
+            }});
    
     setbatch(response.data.batches);
   };
@@ -49,8 +48,7 @@ const Home = () => {
         const response = await axios.get(`${backend.apiUrl}/batch/removebatch/${currentBatchId}`, {
             headers: {
               Authorization: `Bearer ${token}`, // Send token in the "Authorization" header
-            },
-          });
+            }});
         toast.success("Batch deleted successfully!");
         fetchbatch(); // Refresh the batch list after deletion
       }
