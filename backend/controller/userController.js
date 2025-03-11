@@ -24,7 +24,7 @@ expiryDate.setMilliseconds(expiryDate.getMilliseconds() + 3600000 * 24 * 30); //
 
 res.cookie('token', token, {
   httpOnly: true,
-  secure: process.env.NODE_ENV === 'production',
+  secure: true,
   expires: expiryDate,  // Use `expires` instead of `maxAge`
   sameSite: 'Strict',
     path:"/"
@@ -60,7 +60,7 @@ expiryDate.setMilliseconds(expiryDate.getMilliseconds() + 3600000 * 24 * 30); //
 
 res.cookie('token', token, {
   httpOnly: true,
-  secure: process.env.NODE_ENV === 'production',
+  secure:true,
   expires: expiryDate,  // Use `expires` instead of `maxAge`
   sameSite: 'Strict',
     path:"/"
