@@ -10,6 +10,7 @@ import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router';
 
 const Home = () => {
+  const token = localStorage.getItem('token');
   const [showcreatebatch, setshowcreatebatch] = useState(false);
   const [batch, setbatch] = useState([]);
   const [id, setid] = useState("");
@@ -32,7 +33,11 @@ const Home = () => {
 
   // Fetch batches
   const fetchbatch = async () => {
-    const response = await axios.get(`${backend.apiUrl}/batch/findbatch`, { withCredentials: true });
+    const response = await axios.get(`${backend.apiUrl}/batch/findbatch`, {
+            headers: {
+              Authorization: `Bearer ${token}`, // Send token in the "Authorization" header
+            },
+          });
    
     setbatch(response.data.batches);
   };
@@ -41,7 +46,11 @@ const Home = () => {
   const deletebatch = async () => {
     try {
       if (currentBatchId) {
-        const response = await axios.get(`${backend.apiUrl}/batch/removebatch/${currentBatchId}`, { withCredentials: true });
+        const response = await axios.get(`${backend.apiUrl}/batch/removebatch/${currentBatchId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`, // Send token in the "Authorization" header
+            },
+          });
         toast.success("Batch deleted successfully!");
         fetchbatch(); // Refresh the batch list after deletion
       }
