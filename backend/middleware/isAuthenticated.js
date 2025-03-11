@@ -3,12 +3,13 @@ import jwt from "jsonwebtoken"
 import userSchema from "../schema/userSchema.js"
 const app=express();
 export const islogin=(req,res,next)=>{
-    if(!req.cookies.token){
+     const token = req.headers.authorization?.split(' ')[1];
+    if(!token){
         res.status(401).json({message:"token not found"});
         console.log("token not found")
         return;
     }
-    jwt.verify(req.cookies.token,process.env.jwt_token,async (err,result)=>{
+    jwt.verify(token,process.env.jwt_token,async (err,result)=>{
         if(err){
             res.status(400).json({message:"something went wrong"});
             return;
