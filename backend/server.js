@@ -19,7 +19,8 @@ app.use(cookieParser())
 dotenv.config();
 const corsOptions = {
     origin: 'https://tution-fee-1.onrender.com',  // Replace with your frontend's URL (React dev server)
-    credentials: true,  // Allow credentials (cookies)
+    credentials: true,
+    allowedHeaders: ['Authorization'],// Allow credentials (cookies)
  };
  app.use(cors(corsOptions))
  
