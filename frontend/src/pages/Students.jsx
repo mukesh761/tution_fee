@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import Deposite from './Deposite.jsx';
 
 const Students = () => {
+  const token = localStorage.getItem('token');
   const params = useParams();
   const [students, setstudents] = useState([]);
   const [showaddstudent, setshowaddstudent] = useState(false);
@@ -20,7 +21,11 @@ const Students = () => {
   const [studentid, setstudentid] = useState("");
 
   const fetchstudents = async (id) => {
-    const response = await axios.get(`${backend.apiUrl}/student/fetchstudents/${id}`, { withCredentials: true });
+    const response = await axios.get(`${backend.apiUrl}/student/fetchstudents/${id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`, // Send token in the "Authorization" header
+            },
+          });
 
     setstudents(response.data.students)
   }
