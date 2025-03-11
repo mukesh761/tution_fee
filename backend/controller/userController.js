@@ -27,6 +27,7 @@ res.cookie('token', token, {
   secure: process.env.NODE_ENV === 'production',
   expires: expiryDate,  // Use `expires` instead of `maxAge`
   sameSite: 'Strict',
+    path:"/"
 });
                 return res.status(200).json({message:"signup succesfull",user})
             })
@@ -62,6 +63,7 @@ res.cookie('token', token, {
   secure: process.env.NODE_ENV === 'production',
   expires: expiryDate,  // Use `expires` instead of `maxAge`
   sameSite: 'Strict',
+    path:"/"
 });
         res.status(201).json({message:"login successfull",user})
        }
