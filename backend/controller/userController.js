@@ -22,7 +22,7 @@ export const signupUser=async (req,res)=>{
                  res.cookie('token', token, {
   httpOnly: true, // Cookie can't be accessed via JavaScript
   secure: true, // Only send cookies over HTTPS in production
-  maxAge: 3600000, // Cookie expires in 1 hour (in milliseconds)
+  maxAge: 3600000*24*30, // Cookie expires in 1 hour (in milliseconds)
   sameSite: 'Strict', // Prevent cross-site request forgery
 });
                 return res.status(200).json({message:"signup succesfull",user})
