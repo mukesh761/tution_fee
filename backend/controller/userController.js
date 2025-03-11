@@ -19,11 +19,14 @@ export const signupUser=async (req,res)=>{
                 })
                 const token=generateToken(user);
                 console.log(token)
-                 res.cookie('token', token, {
-  httpOnly: true, // Cookie can't be accessed via JavaScript
-  secure: true, // Only send cookies over HTTPS in production
-  maxAge: 3600000*24*30, // Cookie expires in 1 hour (in milliseconds)
-  sameSite: 'Strict', // Prevent cross-site request forgery
+      const expiryDate = new Date();
+expiryDate.setMilliseconds(expiryDate.getMilliseconds() + 3600000 * 24 * 30); // 30 days from now
+
+res.cookie('token', token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production',
+  expires: expiryDate,  // Use `expires` instead of `maxAge`
+  sameSite: 'Strict',
 });
                 return res.status(200).json({message:"signup succesfull",user})
             })
@@ -51,11 +54,14 @@ export const  loginUser=async (req,res)=>{
        const result=await  bcrypt.compare(password,user.password);
        if(result){
         const token=generateToken(user);
-        res.cookie('token', token, {
-  httpOnly: true, // Cookie can't be accessed via JavaScript
-  secure: true, // Only send cookies over HTTPS in production
-  maxAge: 3600000, // Cookie expires in 1 hour (in milliseconds)
-  sameSite: 'Strict', // Prevent cross-site request forgery
+     const expiryDate = new Date();
+expiryDate.setMilliseconds(expiryDate.getMilliseconds() + 3600000 * 24 * 30); // 30 days from now
+
+res.cookie('token', token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production',
+  expires: expiryDate,  // Use `expires` instead of `maxAge`
+  sameSite: 'Strict',
 });
         res.status(201).json({message:"login successfull",user})
        }
