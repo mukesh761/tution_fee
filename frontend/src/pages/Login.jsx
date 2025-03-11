@@ -19,11 +19,12 @@ const Login = () => {
         e.preventDefault();
         try {
             const userdata={email,password}
-            const response= await axios.post(`${backend.apiUrl}/user/login`,userdata,{withCredentials:true});
+            const response= await axios.post(`${backend.apiUrl}/user/login`,userdata);
             
             setloading(false)
             localStorage.setItem("islogin",true);
             localStorage.setItem("user",JSON.stringify(response.data.user));
+            localStorage.setItem('token', response.data.token);
             navigate("/");
             toast.success(response.data.message);
            
