@@ -7,6 +7,7 @@ import { RxCross2 } from "react-icons/rx";
 import { useNavigate } from 'react-router';
 
 const Createbatch = ({setshowcreatebatch}) => {
+    const token = localStorage.getItem('token');
     const [name,setname] = useState("");
     const [time, settime] = useState("")
     const navigate=useNavigate()
@@ -14,7 +15,11 @@ const Createbatch = ({setshowcreatebatch}) => {
     const createBatch=async(e)=>{
         e.preventDefault();
         const formdata={name,time}
-        const response=await axios.post(`${backend.apiUrl}/batch/createbatch`,formdata,{withCredentials:true})
+        const response=await axios.post(`${backend.apiUrl}/batch/createbatch`,formdata, {
+            headers: {
+              Authorization: `Bearer ${token}`, // Send token in the "Authorization" header
+            },
+          })
         navigate("/")
         setshowcreatebatch(false)
         toast.success(response.data.message);
