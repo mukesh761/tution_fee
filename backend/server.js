@@ -18,7 +18,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(cookieParser())
 dotenv.config();
 const corsOptions = {
-    origin: 'https://tution-fee-1.onrender.com',  // Replace with your frontend's URL (React dev server)
+    origin: 'https://tution-fee-1.onrender.com' || 'http://localhost:5173',  // Replace with your frontend's URL (React dev server)
     credentials: true,
    // Allow credentials (cookies)
  };
