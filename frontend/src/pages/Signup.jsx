@@ -18,7 +18,7 @@ const Signup = () => {
         e.preventDefault();
         try {
             const userdata={name,email,password}
-            const response= await axios.post(`${backend.apiUrl}/user/signup`,userdata,);
+            const response= await axios.post(`${backend.apiUrl}/user/signup`,userdata,{withCredentials:true});
             
             setloading(false)
             localStorage.setItem("islogin",true);
