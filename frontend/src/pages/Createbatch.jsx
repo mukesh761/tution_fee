@@ -15,7 +15,7 @@ const Createbatch = ({setshowcreatebatch}) => {
     const createBatch=async(e)=>{
         e.preventDefault();
         const formdata={name,time}
-       const response=await axios.post(`${backend.apiUrl}/batch/createbatch`,formdata,{withCredentials:true}))
+       const response=await axios.post(`${backend.apiUrl}/batch/createbatch`,formdata,{withCredentials:true})
         navigate("/")
         setshowcreatebatch(false)
         toast.success(response.data.message);
