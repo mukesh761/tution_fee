@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken"
 import userSchema from "../schema/userSchema.js"
 const app=express();
 export const islogin=(req,res,next)=>{
-     const token = req.headers.authorization?.split(' ')[1];
+     const token = req.cookies.token;
     if(!token){
         res.status(401).json({message:"token not found"});
         console.log("token not found")
