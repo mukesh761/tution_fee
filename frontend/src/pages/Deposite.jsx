@@ -14,11 +14,7 @@ const Deposite = ({value}) => {
         e.preventDefault();
         try {
             const formdata={depositeon,lastdeposite,depositeupto}
-            const response=await axios.post(`${backend.apiUrl}/student/depositefee/${id}`,formdata, {
-            headers: {
-              Authorization: `Bearer ${token}`, // Send token in the "Authorization" header
-            },
-          });
+            const response=await axios.post(`${backend.apiUrl}/student/depositefee/${id}`,formdata,{withCredentials:true});
            
             toast.success("fee updated");
             value.setshowdeposite(false)
