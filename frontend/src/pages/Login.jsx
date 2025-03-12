@@ -19,7 +19,7 @@ const Login = () => {
         e.preventDefault();
         try {
             const userdata={email,password}
-            const response= await axios.post(`${backend.apiUrl}/user/login`,userdata);
+            const response= await axios.post(`${backend.apiUrl}/user/login`,userdata,{withCredentials:true});
             
             setloading(false)
             localStorage.setItem("islogin",true);
