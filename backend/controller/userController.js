@@ -19,6 +19,12 @@ export const signupUser=async (req,res)=>{
                 })
                 const token=generateToken(user);
                 console.log(token)
+                     res.cookie('token', token, {
+    maxAge: 3600000*24*30,        // Expiration time in milliseconds (here it's 15 minutes)
+    httpOnly: true,        // Makes cookie accessible only through HTTP(S) requests, not JavaScript
+    secure: true,         // If true, cookie will only be sent over HTTPS (use true in production)
+    sameSite: 'strict'     // Controls cross-site cookie behavior
+  });
 
                 return res.status(200).json({message:"signup succesfull",user,token})
             })
@@ -46,6 +52,12 @@ export const  loginUser=async (req,res)=>{
        const result=await  bcrypt.compare(password,user.password);
        if(result){
         const token=generateToken(user);
+                res.cookie('token', token, {
+    maxAge: 3600000*24*30,        // Expiration time in milliseconds (here it's 15 minutes)
+    httpOnly: true,        // Makes cookie accessible only through HTTP(S) requests, not JavaScript
+    secure: true,         // If true, cookie will only be sent over HTTPS (use true in production)
+    sameSite: 'strict'     // Controls cross-site cookie behavior
+  });
  
         res.status(201).json({message:"login successfull",user,token})
        }
