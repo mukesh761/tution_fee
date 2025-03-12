@@ -22,7 +22,7 @@ export const signupUser=async (req,res)=>{
                      res.cookie('token', token, {
     maxAge: 3600000*24*30,        // Expiration time in milliseconds (here it's 15 minutes)
     httpOnly: true,        // Makes cookie accessible only through HTTP(S) requests, not JavaScript
-    secure: true,         // If true, cookie will only be sent over HTTPS (use true in production)
+             // If true, cookie will only be sent over HTTPS (use true in production)
     sameSite: 'strict'     // Controls cross-site cookie behavior
   });
 
@@ -55,7 +55,7 @@ export const  loginUser=async (req,res)=>{
                 res.cookie('token', token, {
     maxAge: 3600000*24*30,        // Expiration time in milliseconds (here it's 15 minutes)
     httpOnly: true,        // Makes cookie accessible only through HTTP(S) requests, not JavaScript
-    secure: true,         // If true, cookie will only be sent over HTTPS (use true in production)
+            // If true, cookie will only be sent over HTTPS (use true in production)
     sameSite: 'strict'     // Controls cross-site cookie behavior
   });
  
