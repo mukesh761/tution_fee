@@ -9,7 +9,7 @@ export const islogin=(req,res,next)=>{
         console.log("token not found")
         return;
     }
-    jwt.verify(token,process.env.jwt_token,async (err,result)=>{
+    jwt.verify(token,process.env.JWT_TOKEN,async (err,result)=>{
         if(err){
             res.status(400).json({message:err});
             return;
