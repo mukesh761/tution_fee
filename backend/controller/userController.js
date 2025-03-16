@@ -19,13 +19,12 @@ export const signupUser=async (req,res)=>{
                 })
                 const token=generateToken(user);
                 console.log(token)
-                     res.cookie("token", token, {
-  httpOnly: true,
-  secure: true,
-  sameSite: "None",
-  domain: ".onrender.com",
+              res.cookie('token', token, {
+    httpOnly: true, // Cookie can only be accessed by the server
+    secure: process.env.NODE_ENV === 'production', // Only set cookie over HTTPS in production
+    sameSite: 'strict', // Prevent cross-site request forgery (CSRF)
+    maxAge: 3600000, // Cookie expiration (1 hour)
 });
-
 
                 return res.status(200).json({message:"signup succesfull",user,token})
             })
@@ -53,11 +52,11 @@ export const  loginUser=async (req,res)=>{
        const result=await  bcrypt.compare(password,user.password);
        if(result){
         const token=generateToken(user);
-                res.cookie("token", token, {
-  httpOnly: true,
-  secure: true,
-  sameSite: "None",
-  domain: ".onrender.com",
+   res.cookie('token', token, {
+    httpOnly: true, // Cookie can only be accessed by the server
+    secure: process.env.NODE_ENV === 'production', // Only set cookie over HTTPS in production
+    sameSite: 'strict', // Prevent cross-site request forgery (CSRF)
+    maxAge: 3600000, // Cookie expiration (1 hour)
 });
 
  
