@@ -11,7 +11,7 @@ export const islogin=(req,res,next)=>{
     }
     jwt.verify(token,process.env.jwt_token,async (err,result)=>{
         if(err){
-            res.status(400).json({message:"something went wrong"});
+            res.status(400).json({message:err});
             return;
         }
         const email=result.email;
