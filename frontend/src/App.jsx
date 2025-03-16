@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Signup from './pages/Signup'
 import { ToastContainer, toast } from 'react-toastify';
 import Login from './pages/Login';
-import { Routes, Route ,BrowserRouter as Router } from "react-router"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Createbatch from './pages/Createbatch';
