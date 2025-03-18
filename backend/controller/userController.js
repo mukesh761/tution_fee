@@ -24,7 +24,7 @@ export const signupUser=async (req,res)=>{
     secure: true,
     sameSite: 'None',
    path: "/",  // Ensures the cookie works across subdomains
-    maxAge: 3600000,
+    maxAge: 3600000*24*30,
 });
 
                 return res.status(200).json({message:"signup succesfull",user,token})
@@ -58,7 +58,7 @@ export const  loginUser=async (req,res)=>{
     secure: true,
     sameSite: 'None',
    path: "/",  // Ensures the cookie works across subdomains
-    maxAge: 3600000,
+   maxAge: 3600000*24*30,
 });
  
         res.status(201).json({message:"login successfull",user,token})
@@ -77,6 +77,14 @@ export const  loginUser=async (req,res)=>{
 }
 
 export const logout=(req,res)=>{
-    const token=" "
+    const token=" ";
+    res.cookie('token', token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'None',
+       path: "/",  // Ensures the cookie works across subdomains
+       maxAge: 0,
+    });
+
     res.status(204).json({message:"user logout",token})
 }
