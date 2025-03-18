@@ -5,6 +5,7 @@ import axios from 'axios';
 import { backend } from '../config';
 import { toast } from 'react-toastify';
 
+
 const Addstudent =({value}) => {
     const token = localStorage.getItem('token');
     const [name, setname] = useState("");
@@ -12,6 +13,7 @@ const Addstudent =({value}) => {
     const [classs, setclasss] = useState("");
     const [join, setjoin] = useState(null);
     const [fees, setfees] = useState();
+
     
     const [loading, setloading] = useState(false)
     

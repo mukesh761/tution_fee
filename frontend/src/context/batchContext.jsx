@@ -1,12 +1,13 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
-const batchContext=createContext();
+const BatchContext=createContext();
 
-export const batchProvider=({children})=>{
+export const BatchProvider=({children})=>{
+    const [batch, setbatch] = useState("mukesh")
     return(
-        <batchContext.Provider>
+        <BatchContext.Provider value={{batch,setbatch}}>
             {children}
-        </batchContext.Provider>
+        </BatchContext.Provider>
     )
 }
-export default batchContext;
+export default BatchContext;

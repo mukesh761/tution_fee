@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { backend } from '../config';
@@ -6,8 +6,10 @@ import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate } from 'react-router';
+import UserContext from '../context/userContext';
 
 const Login = () => {
+    const {islogin,setislogin}=useContext(UserContext)
     const navigate=useNavigate()
    
     const [email, setemail] = useState("");
@@ -24,6 +26,7 @@ const Login = () => {
             setloading(false)
             localStorage.setItem("islogin",true);
             localStorage.setItem("user",JSON.stringify(response.data.user));
+            setislogin(true)
             localStorage.setItem('token', response.data.token);
             navigate("/");
             toast.success(response.data.message);

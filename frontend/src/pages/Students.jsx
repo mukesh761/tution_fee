@@ -18,7 +18,7 @@ const Students = () => {
   const [showdeposite, setshowdeposite] = useState(false)
 
   const [id, setid] = useState(params.id);
-  const [studentid, setstudentid] = useState("");
+  const [student, setstudent] = useState("");
 
   const fetchstudents = async (id) => {
     const response = await axios.get(`${backend.apiUrl}/student/fetchstudents/${id}`,{withCredentials:true});
@@ -52,7 +52,7 @@ const Students = () => {
       if (currentBatchId) {
         const response = await axios.get(`${backend.apiUrl}/student/removestudent/${id}/${currentBatchId}`, { withCredentials: true });
         toast.success("student deleted successfully!");
-        fetchstudents(); // Refresh the batch list after deletion
+        fetchstudents(params.id); // Refresh the batch list after deletion
       }
     } catch (error) {
       toast.error("Error deleting batch.");
@@ -67,7 +67,7 @@ const Students = () => {
       <div className='flex items-center flex-col justify-center gap-10  bg-[#205781] relative min-h-screen'>
         <div className='mt-20 flex items-center justify-center flex-wrap gap-5'>
           <div className={showdeposite ? "block" : "hidden"}>
-            <Deposite value={{ setstudentid, studentid, setshowdeposite }} />
+            <Deposite value={{ setstudent, student, setshowdeposite,fetchstudents }} />
           </div>
 
           {students.length > 0 ? (
@@ -85,13 +85,14 @@ const Students = () => {
                     <h1 className='text-2xl font-semibold text-[#F6F8D5] '>class - {item.classs}</h1>
                     <h1 className='text-2xl font-semibold text-[#F6F8D5] '>fee-{item.fees}</h1>
                     <h1 className='text-2xl font-semibold text-[#F6F8D5] '>join-{item.join}</h1>
+                    <hr className='w-full text-2xl font-extrabold' />
                     <h1 className='text-2xl font-semibold text-[#F6F8D5] '>last amount-{item.lastdeposite}</h1>
                     <h1 className='text-2xl font-semibold text-[#F6F8D5] '>on-{item.depositeon}</h1>
                     <h1 className='text-2xl font-semibold text-[#F6F8D5] '>up to-{item.depositeupto}</h1>
                     <h1 className='text-2xl font-semibold text-[#F6F8D5] '>due-{item.due}</h1>
                     <h1 className='text-2xl font-semibold text-[#F6F8D5] '>message-{item.remark}</h1>
 
-                    <button className='h-10 w-36 rounded-md mt-5 font-semibold ring-2 ring-blue-200 cursor-pointer hover:text-[#F6F8D5]  mb-2 hover:bg-[#2e4e52]' onClick={() => { setshowdeposite(true); setstudentid(item._id) }}>Deposite</button>
+                    <button className='h-10 w-36 rounded-md mt-5 font-semibold ring-2 ring-blue-200 cursor-pointer hover:text-[#F6F8D5]  mb-2 hover:bg-[#2e4e52]' onClick={() => { setshowdeposite(true); setstudent(item) }}>Deposite</button>
                   </div>
                 </>
               )
@@ -101,7 +102,7 @@ const Students = () => {
 
           ) : <div>no student found</div>}
         </div>
-        <div className={showaddstudent ? 'block h-full w-full' : 'hidden h-full w-full'}>
+        <div className={showaddstudent ? 'block h-full w-full relative' : 'hidden h-full w-full'}>
           <Addstudent value={{ setshowaddstudent, id }} />
         </div>
         <button className='bg-[#4F959D] w-40 rounded-md h-10 mb-10 hover:scale-105 cursor-pointer' onClick={() => { setshowaddstudent(true) }}>Add New Student</button>

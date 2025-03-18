@@ -21,15 +21,15 @@ const App = () => {
    
   }
     
-  }, [])
+  }, [user])
   
   return (
     <>
     <Router>
       <Routes>
-        <Route path='login' element={islogin?<Home/>:<Login/>}/ >
-        <Route path='signup' element={islogin?<Home/>:<Signup/>}/ >
-        <Route path='/' element={islogin?<Home/>:<Login/>}/ >
+        <Route path='login' element={islogin?<Home/>:<Login/>}/>
+        <Route path='signup' element={islogin?<Home/>:<Signup/>} />
+        <Route path='/' element={islogin?<Home/>:<Login/>} />
         <Route path='students/:id' element={islogin?<Students/>:<Login/>}/ >
       </Routes>
     </Router>

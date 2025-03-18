@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 
 const Navbar = () => {
+  const {islogin,setislogin}=useContext(UserContext);
+
   const user=JSON.parse(localStorage.getItem("user"));
    const [anchorEl, setAnchorEl] = React.useState(null);
     const [currentBatchId, setCurrentBatchId] = useState(null); // State for the current batch ID being clicked
@@ -25,15 +27,22 @@ const Navbar = () => {
       setAnchorEl(null);
     };
 
+    const opensignup=()=>{
+      navigate("/");
+    }
+
     const logout=async ()=>{
       try {
         const responsne=await axios.get( `${backend.apiUrl}/user/logout`,{withCredentials:true});
         console.log(responsne.data);
+        localStorage.setItem("islogin",false)
         localStorage.removeItem("islogin");
         localStorage.removeItem("user");
         // localStorage.setItem("user","");
         toast.success("log out successfull");
-        navigate('/signup')
+        setislogin(false)
+        opensignup()
+       
       } catch (error) {
         if(error) throw error;
       }

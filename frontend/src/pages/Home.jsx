@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Createbatch from './Createbatch';
 import axios from 'axios';
 import { backend } from '../config';
@@ -8,6 +8,8 @@ import { CiMenuKebab } from "react-icons/ci";
 import { toast } from 'react-toastify';
 import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router';
+
+
 
 const Home = () => {
   const token = localStorage.getItem('token');
@@ -75,7 +77,7 @@ const Home = () => {
                 openstudents(item._id)
               }}>
               <CiMenuKebab 
-                className='absolute top-2 right-2 cursor-pointer h-10 w-5'
+                className='absolute top-1 right-[-10px] cursor-pointer h-10 w-10'
                 onClick={(e) => handleClick(e, item._id)} // Pass the batch's _id when clicking the menu
               />
               <h1 className='font-bold text-4xl text-[#F6F8D5]'>{item.name}</h1>
