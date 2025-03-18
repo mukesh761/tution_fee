@@ -10,6 +10,7 @@ const Deposite = ({value}) => {
     const [lastdeposite, setlastdeposite] = useState();
     const [depositeupto, setdepositeupto] = useState();
     const [remark, setremark] = useState();
+    const [due, setdue] = useState();
     
    
     const depositefee=async(e,id)=>{
@@ -40,6 +41,10 @@ const Deposite = ({value}) => {
 
         <div className='flex items-center justify-center flex-col w-full'><span>deposited till</span>
         <input type="date" className='w-full h-12 bg-[#98D2C0] rounded-md  ' value={depositeupto} onChange={(e)=>{setdepositeupto(e.target.value)}} /></div>
+
+                <div className='flex items-center justify-center flex-col w-full'><span>due</span>
+        <input type="date" className='w-full h-12 bg-[#98D2C0] rounded-md  ' value={due} onChange={(e)=>{setdue(e.target.value)}} /></div>
+                
 
                   <div className='flex items-center justify-center flex-col w-full'><span>remark</span>
         <input type="text" className='w-full h-12 bg-[#98D2C0] rounded-md 'value={remark} onChange={(e)=>{setremark(e.target.value)}} /></div>
