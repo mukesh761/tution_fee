@@ -43,7 +43,7 @@ const Deposite = ({value}) => {
         <input type="date" className='w-full h-12 bg-[#98D2C0] rounded-md  ' value={depositeupto} onChange={(e)=>{setdepositeupto(e.target.value)}} /></div>
 
                 <div className='flex items-center justify-center flex-col w-full'><span>due</span>
-        <input type="date" className='w-full h-12 bg-[#98D2C0] rounded-md  ' value={due} onChange={(e)=>{setdue(e.target.value)}} /></div>
+        <input type="number" className='w-full h-12 bg-[#98D2C0] rounded-md  ' value={due} onChange={(e)=>{setdue(e.target.value)}} /></div>
                 
 
                   <div className='flex items-center justify-center flex-col w-full'><span>remark</span>
