@@ -35,7 +35,7 @@ const Addstudent =({value}) => {
     }
 
   return (
-    <div className='bg-[#173953]  absolute bottom-0 flex items-center justify-center gap-5 sm:w-2/3 rounded-md sm:h-[700px] md:right-50 w-[80%] left-[20%] '>
+    <div className='bg-[#173953]  absolute top-0 flex items-center justify-center gap-5 sm:w-2/3 rounded-md sm:h-[700px] md:right-50 w-[80%] left-[20%] '>
          <RxCross2 className='absolute top-5 right-5 h-8 w-8' onClick={()=>{value.setshowaddstudent(false)}}/>
         <form action="" className='flex items-center justify-center flex-col gap-10 w-2/3 h-full rounded-md'>
         <TextField fullWidth id="fullWidth" label="Name" variant="outlined" color="" value={name} onChange={(e)=>{setname(e.target.value)}} sx={{backgroundColor:"#98D2C0",
