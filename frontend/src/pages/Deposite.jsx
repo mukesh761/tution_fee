@@ -16,7 +16,7 @@ const Deposite = ({value}) => {
     const depositefee=async(e,id)=>{
         e.preventDefault();
         try {
-            const formdata={depositeon,lastdeposite,depositeupto,remark}
+            const formdata={depositeon,lastdeposite,depositeupto,remark,due}
             const response=await axios.post(`${backend.apiUrl}/student/depositefee/${id}`,formdata,{withCredentials:true});
            
             toast.success("fee updated");
