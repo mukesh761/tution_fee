@@ -33,6 +33,10 @@ const studentSchema=mongoose.Schema({
     },
     due:{
         type:Number,
+    },
+    remark:{
+        type:String,
+    }
 });
 const student=mongoose.model("student",studentSchema);
 export default student;
