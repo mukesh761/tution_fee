@@ -30,7 +30,9 @@ const studentSchema=mongoose.Schema({
     },
     depositeupto:{
         type:Date,
-    }
+    },
+    due:{
+        type:Number,
 });
 const student=mongoose.model("student",studentSchema);
 export default student;
