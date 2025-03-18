@@ -88,6 +88,7 @@ const Students = () => {
                     <h1 className='text-2xl font-semibold text-[#F6F8D5] '>last amount-{item.lastdeposite}</h1>
                     <h1 className='text-2xl font-semibold text-[#F6F8D5] '>on-{item.depositeon}</h1>
                     <h1 className='text-2xl font-semibold text-[#F6F8D5] '>up to-{item.depositeupto}</h1>
+                    <h1 className='text-2xl font-semibold text-[#F6F8D5] '>due-{item.due}</h1>
                     <h1 className='text-2xl font-semibold text-[#F6F8D5] '>message-{item.remark}</h1>
 
                     <button className='h-10 w-36 rounded-md mt-5 font-semibold ring-2 ring-blue-200 cursor-pointer hover:text-[#F6F8D5]  mb-2 hover:bg-[#2e4e52]' onClick={() => { setshowdeposite(true); setstudentid(item._id) }}>Deposite</button>
