@@ -9,11 +9,13 @@ const Deposite = ({value}) => {
     const [depositeon, setdepositeon] = useState();
     const [lastdeposite, setlastdeposite] = useState();
     const [depositeupto, setdepositeupto] = useState();
+    const [remark, setremark] = useState();
+    
    
     const depositefee=async(e,id)=>{
         e.preventDefault();
         try {
-            const formdata={depositeon,lastdeposite,depositeupto}
+            const formdata={depositeon,lastdeposite,depositeupto,remark}
             const response=await axios.post(`${backend.apiUrl}/student/depositefee/${id}`,formdata,{withCredentials:true});
            
             toast.success("fee updated");
@@ -33,9 +35,15 @@ const Deposite = ({value}) => {
         
         <div className='flex items-center justify-center flex-col w-full'><span>deposited on</span>
         <input type="date" className='w-full h-12 bg-[#98D2C0] rounded-md 'value={depositeon} onChange={(e)=>{setdepositeon(e.target.value)}} /></div>
+                
+              
 
         <div className='flex items-center justify-center flex-col w-full'><span>deposited till</span>
         <input type="date" className='w-full h-12 bg-[#98D2C0] rounded-md  ' value={depositeupto} onChange={(e)=>{setdepositeupto(e.target.value)}} /></div>
+
+                  <div className='flex items-center justify-center flex-col w-full'><span>remark</span>
+        <input type="text" className='w-full h-12 bg-[#98D2C0] rounded-md 'value={remark} onChange={(e)=>{setremark(e.target.value)}} /></div>
+                
         <button className='h-10 w-32 bg-[#98D2C0] rounded-md cursor-pointer hover:bg-[#548172]'onClick={(e)=>{depositefee(e,value.studentid)}}>deposite</button>
             </form>
         </div>
