@@ -46,7 +46,7 @@ export const fetchstudents=async(req,res)=>{
 export const depositefee=async(req,res)=>{
     console.log("inside deposite fee")
     try {
-        const {lastdeposite,depositeupto,depositeon,due}=req.body;
+        const {lastdeposite,depositeupto,depositeon,due,remark}=req.body;
         console.log(req.body)
         const student= await studentSchema.findOneAndUpdate({_id:req.params.id},{lastdeposite,depositeon,depositeupto,due,remark},{new:true});
         console.log(student)
