@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Createbatch from './pages/Createbatch';
 import UserContext from './context/userContext';
 import Students from './pages/Students';
+import Studentdetail from './pages/Studentdetail';
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
         <Route path='signup' element={islogin?<Home/>:<Signup/>} />
         <Route path='/' element={islogin?<Home/>:<Login/>} />
         <Route path='students/:id' element={islogin?<Students/>:<Login/>}/ >
+        <Route path='studentdetail/:id' element={islogin?<Studentdetail/>:<Login/>}/ >
       </Routes>
     </Router>
     

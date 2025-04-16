@@ -73,16 +73,19 @@ const Home = () => {
           batch.map((item, index) => (
             <div
               key={index}
-              className='sm:h-62 sm:w-96 rounded-sm flex items-center justify-center flex-col bg-[#4F959D] relative w-[80%]' onClick={()=>{
-                openstudents(item._id)
-              }}>
-              <CiMenuKebab 
+              className='sm:h-62 sm:w-96 rounded-sm flex items-center justify-center flex-col bg-[#4F959D] relative w-[80%]' >
+                <CiMenuKebab 
                 className='absolute top-1 right-[-10px] cursor-pointer h-10 w-10'
                 onClick={(e) => handleClick(e, item._id)} // Pass the batch's _id when clicking the menu
               />
+                <div className='h-full w-full flex items-center justify-center flex-col' onClick={()=>{
+                openstudents(item._id)
+              }}>
+              
               <h1 className='font-bold text-4xl text-[#F6F8D5]'>{item.name}</h1>
               <h1 className='font-semibold text-xl text-[#F6F8D5]'>{item.time}</h1>
               <h1 className='text-[#F6F8D5]'>{item.students.length} students</h1>
+            </div>
             </div>
           ))
         ) : (

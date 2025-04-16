@@ -11,6 +11,7 @@ import connection from "./database/connection.js";
 import batchRoute from "./routes/batchRoute.js"
 import userRoute from "./routes/userRoute.js"
 import studentRoute from "./routes/studentRoute.js"
+import feeRoute from "./routes/feestructureRoute.js"
 
 const app=express();
 app.use(express.json());
@@ -19,6 +20,7 @@ app.use(cookieParser())
 dotenv.config();
 const corsOptions = {
     origin: 'https://tution-fee-1.onrender.com',  // Replace with your frontend's URL (React dev server)
+    // origin: "http://localhost:5173",
     credentials: true,
    // Allow credentials (cookies)
  };
@@ -30,6 +32,7 @@ app.get("/",(req,res)=>{
 app.use("/user",userRoute);
 app.use("/batch",batchRoute);
 app.use("/student",studentRoute);
+app.use("/feestructure",feeRoute);
 
 app.listen(process.env.PORT||8000,()=>{
     console.log(`http://localhost:${process.env.PORT}`)

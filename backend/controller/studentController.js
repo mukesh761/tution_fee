@@ -1,9 +1,8 @@
 import studentSchema from "../schema/studentSchema.js";
 import batchSchema from "../schema/batchSchema.js"
-import student from "../schema/studentSchema.js";
 
 export const addStudent=async(req,res)=>{
-    const {name,fname,classs,fees,join}=req.body;
+    const {name,fname,classs,fees,join,contact}=req.body;
     try {
         const newStudent = await studentSchema.create({
             name,
@@ -11,14 +10,18 @@ export const addStudent=async(req,res)=>{
             fees,
             join,
             classs,
-            batch:req.params.batch
+            batch:req.params.batch,
+            contact
         });
         const batch=await batchSchema.findOne({_id:req.params.batch});
         batch.students.push(newStudent._id);
         batch.save()
         return res.status(200).json({message:"student created",newStudent})
     } catch (error) {
-        
+        if(error){
+            console.log(error.message)
+            return res.status(500).json({message:error.message})
+        }
     }
 }
 
@@ -36,22 +39,20 @@ export const removeStudent=async(req,res)=>{
 
 export const fetchstudents=async(req,res)=>{
     try {
-        const students=await studentSchema.find({batch:req.params.batch});
+        const students=await studentSchema.find({batch:req.params.batch}).populate("batch").populate("feestructure");
         return res.json({students});
     } catch (error) {
         
     }
 }
 
-export const depositefee=async(req,res)=>{
-    console.log("inside deposite fee")
+export const fetchOneStudent=async(req,res)=>{
     try {
-        const {lastdeposite,depositeupto,depositeon,due,remark}=req.body;
-        console.log(req.body)
-        const student= await studentSchema.findOneAndUpdate({_id:req.params.id},{lastdeposite,depositeon,depositeupto,due,remark},{new:true});
-        console.log(student)
-        return res.json({message:"fee updated",student});
+        const student=await studentSchema.findOne({_id:req.params.student}).populate("feestructure");
+        return res.json({message:"student fetched",student});
     } catch (error) {
-        console.log(error)
+        
     }
 }
+
+

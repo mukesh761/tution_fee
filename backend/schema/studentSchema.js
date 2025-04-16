@@ -18,25 +18,19 @@ const studentSchema=mongoose.Schema({
         type:Date,
         default:Date.now,
     },
-    depositeon:{
-        type:Date,
+    contact:{
+        type:String,
     },
     batch:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"batch"
     },
-    lastdeposite:{
-        type:Number,
-    },
-    depositeupto:{
-        type:Date,
-    },
-    due:{
-        type:Number,
-    },
-    remark:{
-        type:String,
-    }
+    feestructure:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"feestructure"
+    }]
+
+  
 });
 const student=mongoose.model("student",studentSchema);
 export default student;
