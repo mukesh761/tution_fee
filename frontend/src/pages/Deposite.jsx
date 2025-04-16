@@ -31,7 +31,7 @@ const Deposite = ({value}) => {
     }
 
   return (
-    <div className='z-10 absolute  bg-[#2d6084] bottom-20 w-2/3 flex items-center flex-col left-[20%] rounded-md '>
+    <div className='z-10 absolute  bg-[#2d6084] bottom-20 w-2/3 flex items-center flex-col left-[20%] rounded-md top-32 '>
         <h1 className='text-xl font-bold '>{value.student.name}'s fee</h1>
         <div className='w-full'>
         <RxCross2 className='absolute top-5 right-5 h-8 w-8' onClick={()=>{value.setshowdeposite(false)}}/>
