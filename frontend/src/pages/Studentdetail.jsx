@@ -86,11 +86,11 @@ const Studentdetail = () => {
                                onClick={(e) => handleClick(e)} // Pass the batch's _id when clicking the menu
                              />
                         <h1 className='text-3xl font-bold text-[#F6F8D5]  '>{student?.name}</h1>
-                        <h1 className='text-2xl font-semibold text-[#F6F8D5] '>{student?.fname}</h1>
-                        <h1 className='text-2xl font-semibold text-[#F6F8D5] '>{student?.classs}</h1>
+                        <h1 className='text-2xl font-semibold text-[#F6F8D5] '>Fname-{student?.fname}</h1>
+                        <h1 className='text-2xl font-semibold text-[#F6F8D5] '>class-{student?.classs}</h1>
                         
-                        <h1 className='text-2xl font-semibold text-[#F6F8D5] '>{student?.fees}</h1>
-                        <h1 className='text-2xl font-semibold text-[#F6F8D5] '>{student?.join.slice(0,10)}</h1>
+                        <h1 className='text-2xl font-semibold text-[#F6F8D5] '>Fee-{student?.fees}</h1>
+                        <h1 className='text-2xl font-semibold text-[#F6F8D5] '>join-{student?.join.slice(0,10)}</h1>
                         <h1 className='text-2xl font-semibold text-[#F6F8D5] '>{student?.contact}</h1>
                         <button className='h-10 w-32 bg-blue-100 round, item._ided-md mt-2' onClick={()=>{setshowdeposite(true)}}>Deposite</button>
                     </div>
@@ -106,6 +106,7 @@ const Studentdetail = () => {
                         <h1 className='text-2xl font-semibold text-[#F6F8D5] '>paid on-{item?.depositeon?.slice(0,10)}</h1>
                         <h1 className='text-2xl font-semibold text-[#F6F8D5] '>advance-{item?.advance}</h1>
                         <h1 className='text-2xl font-semibold text-[#F6F8D5] '>due-{item?.due}</h1>
+                        <h1 className='text-2xl font-semibold text-[#F6F8D5] '>remark-{item?.remark}</h1>
                     </div>
                         )
                     })}
