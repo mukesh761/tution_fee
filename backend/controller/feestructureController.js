@@ -2,7 +2,7 @@ import studentSchema from "../schema/studentSchema.js";
 import feestructureSchema from "../schema/feestructureSchema.js";
 console.log(feestructureSchema.schema)
 export const depositefee = async (req, res) => {
-    const { depositetill, amount, remarks,depositeon,advance,due } = req.body;
+    const { depositetill, amount, remark,depositeon,advance,due } = req.body;
    const {student}=req.params;
    try {
     const student=await studentSchema.findOne({_id:req.params.student});
@@ -13,7 +13,7 @@ export const depositefee = async (req, res) => {
     const newfee = await feestructureSchema.create({
         depositetill,
         amount,
-        remarks,
+        remark,
         depositeon,
         advance,
         due,
